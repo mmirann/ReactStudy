@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import Button from './Button';
-import HandButton from './HandButton';
-import HandIcon from './HandIcon';
-import { compareHand, generateRandomHand } from './utils';
+import { useState } from "react";
+import Button from "./Button";
+import HandButton from "./HandButton";
+import HandIcon from "./HandIcon";
+import { compareHand, generateRandomHand } from "./utils";
 
-const INITIAL_VALUE = 'rock';
+const INITIAL_VALUE = "rock";
 
 function getResult(me, other) {
   const comparison = compareHand(me, other);
-  if (comparison > 0) return '승리';
-  if (comparison < 0) return '패배';
-  return '무승부';
+  if (comparison > 0) return "승리";
+  if (comparison < 0) return "패배";
+  return "무승부";
 }
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
     setOtherHand(nextOtherHand);
     setGameHistory([...gameHistory, nextHistoryItem]);
     if (comparison > 0) setScore(score + bet);
-    if (comparison < 0) setOtherScore(score + bet);
+    if (comparison < 0) setOtherScore(otherScore + bet);
   };
 
   const handleClearClick = () => {
@@ -42,7 +42,11 @@ function App() {
   };
 
   const handleBetChange = (e) => {
-    // 여기에 코드를 작성하세요
+    let num = Number(e.target.value);
+    if (num > 9) num %= 10;
+    if (num < 1) num = 1;
+    num = Math.floor(num);
+    setBet(num);
   };
 
   return (
@@ -57,9 +61,15 @@ function App() {
         <HandIcon value={otherHand} />
       </div>
       <div>
-        <input type="number" value={bet} min={1} max={9}></input>
+        <input
+          type="number"
+          value={bet}
+          min={1}
+          max={9}
+          onChange={handleBetChange}
+        ></input>
       </div>
-      <p>승부 기록: {gameHistory.join(', ')}</p>
+      <p>승부 기록: {gameHistory.join(", ")}</p>
       <div>
         <HandButton value="rock" onClick={handleButtonClick} />
         <HandButton value="scissor" onClick={handleButtonClick} />

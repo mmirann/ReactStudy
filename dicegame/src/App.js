@@ -1,6 +1,7 @@
 import Board from "./Board";
 import { useState } from "react";
 import Button from "./Button";
+import "./App.css";
 
 function random(n) {
   return Math.ceil(Math.random() * n);
@@ -21,10 +22,14 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="App">
       <div>
-        <Button onClick={handleClearClick}>처음부터</Button>
-        <Button onClick={handleRollClick}>던지기</Button>
+        <Button className="App-button" onClick={handleClearClick} color="blue">
+          처음부터
+        </Button>
+        <Button className="App-button" onClick={handleRollClick} color="red">
+          던지기
+        </Button>
       </div>
       <div>
         <Board name="나" color="blue" gameHistory={myHistory} />
