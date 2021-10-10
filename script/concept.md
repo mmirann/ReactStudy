@@ -111,3 +111,27 @@ function App(){
         const nextNum = random(6);
         setGameHistory([...gameHistory,nextNum]); //State가 제대로 변경됨
 ```
+
+## 명령어 복습
+
+### 프로젝트 생성
+```
+npm init react-app .
+```
+터미널에서 원하는 디렉토리에 들어가 위의 명령어를 입력하면 현재 디렉토리에 리액트 프로젝트를 생성함 
+
+### 개발 모드 실행
+```
+npm run start
+```
+
+### 개발된 프로젝트 빌드
+```
+npm run build
+```
+
+### 빌드한 것 로컬에서 실행
+```
+nppx serve build
+```
+위의 명령어를 입력하면 `build`명령어를 통해 생성된 build 폴더에서 서버가 실행됨
